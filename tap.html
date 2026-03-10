@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FBC Wetumka — Connect & Give</title>
+  <meta name="description" content="Connect with FBC Wetumka or give online." />
+  <link rel="icon" href="data:," />
+
+  <style>
+    :root{
+      --bg: #F6F1E7;
+      --card: #ffffff;
+      --card-soft: #fbf8f2;
+      --muted: #5b6472;
+      --text: #1F2937;
+      --accent: #2C4A7A;
+      --accent-soft: #e8eef8;
+      --button: #C89B5E;
+      --button-hover: #b38950;
+      --good: #dff2e3;
+      --good-border: #9fc3a7;
+      --border: rgba(31, 41, 55, 0.10);
+      --shadow: 0 14px 34px rgba(31, 41, 55, 0.08);
+      --radius: 20px;
+      --max: 680px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    * { box-sizing: border-box; }
+
+    body{
+      margin:0;
+      font-family:var(--font);
+      background: linear-gradient(180deg, #f8f4ec 0%, #F6F1E7 100%);
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      padding: 22px 14px 40px;
+    }
+
+    .wrap{
+      width:100%;
+      max-width:var(--max);
+    }
+
+    .top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .logo{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      background: linear-gradient(135deg, var(--accent), #3d629e);
+      box-shadow: var(--shadow);
+      flex:0 0 auto;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .logo::after{
+      content:"✝";
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      font-size:20px;
+      font-weight:700;
+    }
+
+    .title h1{
+      margin:0;
+      font-size:18px;
+      line-height:1.2;
+      letter-spacing:.2px;
+      color: var(--text);
+    }
+
+    .title p{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.3;
+    }
+
+    .pill{
+      font-size:12px;
+      color:var(--accent);
+      padding:7px 10px;
+      border:1px solid rgba(44, 74, 122, 0.14);
+      border-radius:999px;
+      background: rgba(44, 74, 122, 0.06);
+      white-space:nowrap;
+    }
+
+    .card{
+      background: linear-gradient(180deg, var(--card), var(--card-soft));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      margin-top: 16px;
+    }
+
+    .hero h2{
+      margin:0 0 8px;
+      font-size:28px;
+      letter-spacing:.2px;
+      line-height:1.15;
+      color: var(--text);
+    }
+
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+      font-size:15px;
+    }
+
+    .welcome-kicker{
+      display:inline-block;
+      margin-bottom:12px;
+      padding:7px 11px;
+      border-radius:999px;
+      border:1px solid rgba(44, 74, 122, 0.10);
+      background: rgba(44, 74, 122, 0.06);
+      color: var(--accent);
+      font-size:12px;
+      letter-spacing:.2px;
+      font-weight:600;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .btn{
+      appearance:none;
+      border:1px solid rgba(31, 41, 55, 0.10);
+      background: #fff;
+      color:var(--text);
+      border-radius: 18px;
+      padding: 16px 16px;
+      text-align:left;
+      width:100%;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      transition: transform .08s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
+      text-decoration:none;
+    }
+
+    .btn:active{ transform: scale(.99); }
+
+    .btn:hover{
+      background: #fcfaf6;
+      border-color: rgba(44, 74, 122, 0.18);
+      box-shadow: 0 10px 24px rgba(31, 41, 55, 0.06);
+    }
+
+    .btn .left{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+    }
+
+    .icon{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      flex: 0 0 auto;
+      border:1px solid rgba(31, 41, 55, 0.08);
+      background: #f8f8f8;
+      font-size:19px;
+    }
+
+    .icon.primary{
+      background: var(--accent-soft);
+      border-color: rgba(44, 74, 122, 0.14);
+    }
+
+    .icon.give{
+      background: rgba(200, 155, 94, 0.16);
+      border-color: rgba(200, 155, 94, 0.24);
+    }
+
+    .btn h3{
+      margin:0;
+      font-size:17px;
+      letter-spacing:.2px;
+      color: var(--text);
+    }
+
+    .btn p{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .arrow{
+      color: var(--accent);
+      font-size:22px;
+      line-height:1;
+      margin-left:auto;
+    }
+
+    .secondary{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .btn.small{
+      padding: 13px;
+      border-radius: 16px;
+    }
+
+    .btn.small h3{ font-size:14px; }
+    .btn.small p{ display:none; }
+
+    .footer{
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+      display:grid;
+      gap: 8px;
+    }
+
+    .footer a{
+      color: var(--accent);
+      text-decoration:none;
+      border-bottom: 1px dotted rgba(44, 74, 122, 0.25);
+    }
+
+    .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .gentle-note{
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(31, 41, 55, 0.08);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .form-wrap{ display:none; }
+    .form-wrap.active{ display:block; }
+
+    .form-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom: 10px;
+    }
+
+    .form-head h2{
+      margin:0;
+      font-size:22px;
+      color: var(--text);
+    }
+
+    .form-head p{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    .x{
+      background: transparent;
+      border:1px solid var(--border);
+      color:var(--text);
+      border-radius: 12px;
+      width:40px;
+      height:40px;
+      cursor:pointer;
+    }
+
+    form{
+      display:grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    label{
+      font-size:12px;
+      color: var(--muted);
+    }
+
+    input, textarea, select{
+      width:100%;
+      padding: 13px 13px;
+      border-radius: 15px;
+      border:1px solid rgba(31, 41, 55, 0.10);
+      background: #fff;
+      color: var(--text);
+      outline:none;
+    }
+
+    input::placeholder,
+    textarea::placeholder{
+      color: rgba(31, 41, 55, 0.42);
+    }
+
+    textarea{
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .two{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+
+    .checks{
+      display:grid;
+      gap:8px;
+      margin-top: 4px;
+      padding: 12px;
+      border:1px solid rgba(31, 41, 55, 0.08);
+      border-radius: 16px;
+      background: #fcfaf6;
+    }
+
+    .checks .item{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .checks input{ width:auto; }
+
+    .submit{
+      background: linear-gradient(135deg, var(--button), #d4aa6f);
+      border: none;
+      color: #1F2937;
+      font-weight: 800;
+      letter-spacing:.2px;
+      padding: 15px;
+      border-radius: 18px;
+      cursor:pointer;
+      font-size: 15px;
+    }
+
+    .submit:hover{
+      background: linear-gradient(135deg, var(--button-hover), #c89b5e);
+    }
+
+    .notice{
+      display:none;
+      padding: 11px 13px;
+      border-radius: 14px;
+      border:1px solid var(--good-border);
+      background: var(--good);
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .notice.show{ display:block; }
+
+    @media (max-width: 420px){
+      .secondary{ grid-template-columns: 1fr; }
+      .two{ grid-template-columns: 1fr; }
+      .hero h2{ font-size:24px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <script>
+      // ====== CONFIG: set these ======
+
+      const GOOGLE_FORM_URL = "PASTE_GOOGLE_FORM_VIEWFORM_URL_HERE";
+      const ADMIN_SHEET_URL = "https://docs.google.com/spreadsheets/d/1o2N4vVUePciuoGE1wuh6CEDuxaZpod4OlDpkjZslT78/edit?resourcekey=&gid=701248703#gid=701248703";
+
+      const GIVE_URL = "https://wetumkafbc.churchcenter.com/giving";
+      const SERMONS_URL = "https://www.youtube.com/@fbcwetumka8916";
+      const PRAYER_URL = "";
+      const NEXT_STEPS_URL = "https://YOUR-NEXT-STEPS-PAGE";
+
+      const FORM_ACTION_URL = "https://script.google.com/macros/s/AKfycbzWunzlGnD7AiWvHZkJF8N-JhIrWZgz90ByZxqHD60C0dlIps8oMShARCDBheT7Ixe0/exec";
+    </script>
+
+    <div class="top">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="title">
+          <h1>FBC Wetumka</h1>
+          <p>Connect • Give • Prayer • Next Steps</p>
+        </div>
+      </div>
+      <div class="pill" id="datePill"></div>
+    </div>
+
+    <div class="card hero">
+      <div class="welcome-kicker">Welcome to First Baptist Church Wetumka</div>
+      <h2>We’re glad you’re here.</h2>
+      <p>Whether you’re visiting, need prayer, want to give, or would simply like to connect, we’d love to help you take your next step.</p>
+
+      <div class="grid" style="margin-top:18px;">
+        <button class="btn" id="openConnect" type="button">
+          <div class="left">
+            <div class="icon primary" aria-hidden="true">🤝</div>
+            <div>
+              <h3>Connect With Us</h3>
+              <p>Tell us a little about yourself, and we’ll follow up soon.</p>
+            </div>
+          </div>
+          <div class="arrow">›</div>
+        </button>
+
+        <a class="btn" id="giveBtn" href="#" rel="noopener">
+          <div class="left">
+            <div class="icon give" aria-hidden="true">💚</div>
+            <div>
+              <h3>Give Online</h3>
+              <p>Support the ministry and mission of FBC Wetumka.</p>
+            </div>
+          </div>
+          <div class="arrow">›</div>
+        </a>
+      </div>
+
+      <div class="secondary">
+        <a class="btn small" id="sermonsBtn" href="#" rel="noopener">
+          <div class="left">
+            <div class="icon" aria-hidden="true">🎧</div>
+            <div><h3>Watch Sermons</h3></div>
+          </div>
+          <div class="arrow">›</div>
+        </a>
+
+        <a class="btn small" id="nextBtn" href="#" rel="noopener">
+          <div class="left">
+            <div class="icon" aria-hidden="true">🧭</div>
+            <div><h3>Next Steps</h3></div>
+          </div>
+          <div class="arrow">›</div>
+        </a>
+
+        <button class="btn small" id="prayerBtn" type="button">
+          <div class="left">
+            <div class="icon" aria-hidden="true">🙏</div>
+            <div><h3>Need Prayer?</h3></div>
+          </div>
+          <div class="arrow">›</div>
+        </button>
+
+        <a class="btn small" id="directionsBtn" href="#" rel="noopener">
+          <div class="left">
+            <div class="icon" aria-hidden="true">📍</div>
+            <div><h3>Find Us</h3></div>
+          </div>
+          <div class="arrow">›</div>
+        </a>
+      </div>
+
+      <div class="footer">
+        <div class="row">
+          <div><strong>Service Times:</strong> Sun 11:00 AM • Sun 5:00 PM • Wed 6:30 PM</div>
+        </div>
+        <div class="row">
+          <div><strong>Address:</strong> <span id="addrText">Wetumka, OK</span> • <a href="#" id="callBtn">Call</a> • <a href="#" id="textBtn">Text</a></div>
+        </div>
+        <div>Privacy: We only use your information to follow up and serve you well.</div>
+      </div>
+
+      <div class="gentle-note">
+        Thanks for worshiping with us today. If there’s any way we can help, we’d be honored to connect.
+      </div>
+    </div>
+
+    <div class="card form-wrap" id="connectCard" aria-hidden="true">
+      <div class="form-head">
+        <div>
+          <h2>We’d Love to Connect</h2>
+          <p>Share as much or as little as you’d like. We’re here to help and would love to follow up with you.</p>
+        </div>
+        <button class="x" id="closeConnect" type="button" aria-label="Close">✕</button>
+      </div>
+
+      <div class="notice" id="successNotice">
+        ✅ Thanks — we received your connection card.
+      </div>
+
+      <form id="connectForm">
+        <div class="two">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" autocomplete="name" required />
+          </div>
+          <div>
+            <label for="firstTime">First time with us?</label>
+            <select id="firstTime" name="firstTime">
+              <option value="Not sure">Not sure</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="two">
+          <div>
+            <label for="phone">Phone (optional)</label>
+            <input id="phone" name="phone" inputmode="tel" autocomplete="tel" />
+          </div>
+          <div>
+            <label for="email">Email (optional)</label>
+            <input id="email" name="email" inputmode="email" autocomplete="email" />
+          </div>
+        </div>
+
+        <div class="checks" aria-label="Interest options">
+          <div class="item"><input type="checkbox" id="cb_membership" name="interest" value="Membership" /><label for="cb_membership">I want to learn more about membership</label></div>
+          <div class="item"><input type="checkbox" id="cb_baptism" name="interest" value="Baptism" /><label for="cb_baptism">I want to talk about baptism</label></div>
+          <div class="item"><input type="checkbox" id="cb_serve" name="interest" value="Serve" /><label for="cb_serve">I’d like to find a place to serve</label></div>
+          <div class="item"><input type="checkbox" id="cb_prayer" name="interest" value="Prayer" /><label for="cb_prayer">I have a prayer request</label></div>
+        </div>
+
+        <div>
+          <label for="message">Message / Prayer Request (optional)</label>
+          <textarea id="message" name="message" placeholder="How can we help?"></textarea>
+        </div>
+
+        <button class="submit" type="submit">Send Connection Card</button>
+      </form>
+    </div>
+
+  </div>
+
+  <script>
+    const CHURCH_ADDRESS = "Wetumka, OK";
+    const GOOGLE_MAPS_LINK = "https://maps.google.com/?q=First+Baptist+Church+Wetumka";
+    const CHURCH_PHONE = "14054524000";
+    const CHURCH_TEXT  = "14054524000";
+
+    document.getElementById("addrText").textContent = CHURCH_ADDRESS;
+    document.getElementById("directionsBtn").href = GOOGLE_MAPS_LINK;
+
+    document.getElementById("datePill").textContent =
+      new Date().toLocaleDateString(undefined, { weekday:"short", month:"short", day:"numeric" });
+
+    const giveBtn = document.getElementById("giveBtn");
+    giveBtn.href = GIVE_URL || "#";
+    if (!GIVE_URL || GIVE_URL.includes("YOUR-GIVING-LINK-HERE")) {
+      giveBtn.addEventListener("click", e => {
+        e.preventDefault();
+        alert("Add your giving link in the config at the top of the file.");
+      });
+    }
+
+    const sermonsBtn = document.getElementById("sermonsBtn");
+    sermonsBtn.href = SERMONS_URL || "#";
+
+    const nextBtn = document.getElementById("nextBtn");
+    nextBtn.href = NEXT_STEPS_URL || "#";
+
+    document.getElementById("callBtn").href = `tel:${CHURCH_PHONE}`;
+    document.getElementById("textBtn").href = `sms:${CHURCH_TEXT}`;
+
+    const connectCard = document.getElementById("connectCard");
+    const openConnect = document.getElementById("openConnect");
+    const closeConnect = document.getElementById("closeConnect");
+    const prayerBtn = document.getElementById("prayerBtn");
+
+    function openFallbackForm(prefillPrayer=false){
+      connectCard.classList.add("active");
+      connectCard.setAttribute("aria-hidden","false");
+      connectCard.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (prefillPrayer) {
+        document.getElementById("cb_prayer").checked = true;
+        document.getElementById("message").focus();
+      } else {
+        document.getElementById("name").focus();
+      }
+    }
+
+    function closeForm(){
+      connectCard.classList.remove("active");
+      connectCard.setAttribute("aria-hidden","true");
+      document.getElementById("successNotice").classList.remove("show");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    openConnect.addEventListener("click", () => {
+      const url = (typeof GOOGLE_FORM_URL !== "undefined") ? (GOOGLE_FORM_URL || "").trim() : "";
+      if (url && !url.includes("PASTE_GOOGLE_FORM_VIEWFORM_URL_HERE")) {
+        window.location.href = url;
+      } else {
+        openFallbackForm(false);
+      }
+    });
+
+    prayerBtn.addEventListener("click", () => {
+      if (typeof PRAYER_URL !== "undefined" && PRAYER_URL) {
+        window.location.href = PRAYER_URL;
+        return;
+      }
+      const url = (typeof GOOGLE_FORM_URL !== "undefined") ? (GOOGLE_FORM_URL || "").trim() : "";
+      if (url && !url.includes("PASTE_GOOGLE_FORM_VIEWFORM_URL_HERE")) {
+        window.location.href = url;
+      } else {
+        openFallbackForm(true);
+      }
+    });
+
+    closeConnect.addEventListener("click", closeForm);
+
+    async function submitConnectionCard(payload) {
+      try {
+        if (navigator.sendBeacon) {
+          const blob = new Blob(
+            [JSON.stringify(payload)],
+            { type: "text/plain;charset=UTF-8" }
+          );
+          const beaconOk = navigator.sendBeacon(FORM_ACTION_URL, blob);
+          if (beaconOk) return true;
+        }
+      } catch (err) {
+        console.warn("sendBeacon failed:", err);
+      }
+
+      try {
+        await fetch(FORM_ACTION_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "text/plain;charset=UTF-8"
+          },
+          body: JSON.stringify(payload)
+        });
+        return true;
+      } catch (err) {
+        console.warn("fetch fallback failed:", err);
+        return false;
+      }
+    }
+
+    const form = document.getElementById("connectForm");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const interests = [];
+      form.querySelectorAll('input[name="interest"]:checked').forEach(cb => interests.push(cb.value));
+
+      const payload = {
+        name: document.getElementById("name").value.trim(),
+        firstTime: document.getElementById("firstTime").value,
+        phone: document.getElementById("phone").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        interests: interests.join(", "),
+        message: document.getElementById("message").value.trim(),
+        source: "chair_nfc",
+        timestamp: new Date().toISOString()
+      };
+
+      const success = await submitConnectionCard(payload);
+
+      if (success) {
+        document.getElementById("successNotice").classList.add("show");
+        form.reset();
+      } else {
+        console.log("Connection card payload (failed submit; clipboard fallback):", payload);
+        try { await navigator.clipboard.writeText(JSON.stringify(payload, null, 2)); } catch (_) {}
+        alert("Sorry — something went wrong submitting the form. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>
