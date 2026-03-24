@@ -136,6 +136,9 @@
       box-shadow: var(--shadow-brand);
       cursor: pointer;
       transition: all 0.15s ease;
+      display: block;
+      text-align: center;
+      text-decoration: none;
     }
 
     .main-btn:hover{
@@ -253,10 +256,45 @@
 
     .footer{
       text-align: center;
-      margin-top: 16px;
+      margin-top: 18px;
+      padding-top: 6px;
       font-size: 13px;
       color: var(--footer-text);
-      line-height: 1.45;
+      line-height: 1.6;
+    }
+
+    .footer-address a{
+      color: var(--brand);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .footer-address a:hover{
+      text-decoration: underline;
+    }
+
+    .footer-divider{
+      width: 42px;
+      height: 1px;
+      background: var(--border);
+      margin: 8px auto;
+    }
+
+    .footer-times{
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      color: var(--muted);
+    }
+
+    .service-block{
+      line-height: 1.5;
+    }
+
+    .service-block strong{
+      color: var(--text);
+      font-weight: 700;
     }
 
     @media (max-width: 420px){
@@ -286,19 +324,19 @@
         <a class="icon" href="mailto:fbcwetumka@gmail.com" aria-label="Email">✉</a>
       </div>
 
-      <button class="main-btn" onclick="window.location.href='mailto:fbcwetumka@gmail.com'">
+      <a class="main-btn" href="mailto:fbcwetumka@gmail.com?subject=Message%20from%20FBC%20Wetumka%20Connect%20Page">
         Send us a message
-      </button>
+      </a>
 
-      <div class="hours">Available daily: 8AM – 5PM</div>
+      <div class="hours">Available daily: 8AM – 4PM</div>
     </div>
 
     <div class="menu">
       <a class="menu-btn" href="sms:+14054511242?body=connect">I’m New</a>
-      <a class="menu-btn" href="https://wetumkafbc.churchcenter.com/giving">Give</a>
+      <a class="menu-btn" href="https://wetumkafbc.churchcenter.com/giving" target="_blank" rel="noopener noreferrer">Give</a>
       <a class="menu-btn" href="#" id="events-toggle">Events</a>
-      <a class="menu-btn" href="sms:+14054524000?body=Need Prayer: ">Need Prayer</a>
-      <a class="menu-btn" href="sms:+14054511242?body=serve">Serve</a>
+      <a class="menu-btn" href="sms:+14054511242?body=Need%20Prayer">Need Prayer</a>
+      <a class="menu-btn" href="sms:+14054524000?body=serve">Serve</a>
     </div>
 
     <section id="events-section" class="events-section hidden">
@@ -319,8 +357,26 @@
     </section>
 
     <div class="footer">
-      📍 123 Main St, Wetumka, OK<br>
-      Sunday mornings • Wednesday evenings
+      <div class="footer-address">
+        <a href="https://maps.google.com/?q=500+Hwy+9+Wetumka+OK" target="_blank" rel="noopener noreferrer">
+          📍 500 Hwy 9, Wetumka, OK
+        </a>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-times">
+        <div class="service-block">
+          <strong>Sundays</strong><br>
+          11:00 AM & 5:00 PM
+        </div>
+
+        <div class="service-block">
+          <strong>Wednesdays</strong><br>
+          Adults & Youth • 6:30 PM<br>
+          FBC Kids • 5:00 PM
+        </div>
+      </div>
     </div>
 
   </div>
