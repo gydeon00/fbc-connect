@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>FBC Wetumka — Connect</title>
 
   <style>
     :root{
-      --bg: #f8f9fb;
+      --bg: #eef1f5;
       --card: #ffffff;
       --border: rgba(0,0,0,0.05);
 
@@ -18,16 +18,21 @@
       --brand: #8B0000;
       --brand-dark: #6E0000;
 
-      --shadow: 0 12px 30px rgba(0,0,0,0.08);
-      --shadow-soft: 0 6px 18px rgba(0,0,0,0.06);
-      --shadow-brand: 0 8px 18px rgba(139,0,0,0.18);
+      --shadow: 0 18px 40px rgba(0,0,0,0.10);
+      --shadow-soft: 0 8px 20px rgba(0,0,0,0.05);
+      --shadow-brand: 0 8px 16px rgba(139,0,0,0.16);
 
-      --radius: 26px;
+      --radius: 34px;
       --pill: 999px;
       --maxw: 390px;
     }
 
     * { box-sizing: border-box; }
+
+    html, body{
+      height: 100%;
+      overflow: hidden;
+    }
 
     body{
       margin: 0;
@@ -35,30 +40,55 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
       display: flex;
       justify-content: center;
-      padding: 20px 12px;
+      padding: 12px;
       color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .wrap{
       width: 100%;
       max-width: var(--maxw);
+      height: 100%;
     }
 
     .shell{
       background: var(--card);
-      border-radius: 30px;
-      padding: 16px;
+      border-radius: var(--radius);
+      padding: 14px;
       box-shadow: var(--shadow);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(0,0,0,0.04);
+      min-height: calc(100vh - 24px);
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .shell::-webkit-scrollbar{
+      width: 0;
+      height: 0;
+    }
+
+    .phone-topbar{
+      display: flex;
+      justify-content: center;
+      padding: 4px 0 10px;
+    }
+
+    .dynamic-island{
+      width: 92px;
+      height: 24px;
+      background: #111827;
+      border-radius: 999px;
     }
 
     .top{
       background: #fff;
-      border-radius: 22px;
-      padding: 18px;
+      border-radius: 24px;
+      padding: 16px 16px 14px;
       text-align: center;
       box-shadow: var(--shadow-soft);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(0,0,0,0.04);
       margin-bottom: 14px;
     }
 
@@ -75,12 +105,14 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
+      display: block;
     }
 
     h1{
       margin: 0;
       font-size: 19px;
       font-weight: 800;
+      letter-spacing: -0.01em;
     }
 
     .sub{
@@ -98,19 +130,20 @@
     }
 
     .icon{
-      width: 38px;
-      height: 38px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       background: #fff;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(0,0,0,0.04);
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       color: var(--brand);
       text-decoration: none;
       font-weight: 700;
-      transition: all 0.15s ease;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .icon:hover{
@@ -118,32 +151,39 @@
       box-shadow: 0 8px 14px rgba(0,0,0,0.08);
     }
 
-    .icon svg{
-      width: 18px;
-      height: 18px;
-      fill: var(--brand);
+    .icon:active{
+      transform: scale(0.96);
     }
 
-    .main-btn{
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: var(--pill);
-      background: var(--brand);
+    .main-btn,
+    .menu-btn{
+      text-decoration: none;
+      text-align: center;
+      padding: 15px 14px;
+      border-radius: 999px;
       color: #fff;
       font-weight: 700;
-      font-size: 15px;
+      background: var(--brand);
       box-shadow: var(--shadow-brand);
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
       display: block;
-      text-align: center;
-      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+      border: none;
+      font-size: 15px;
+      width: 100%;
     }
 
-    .main-btn:hover{
+    .main-btn:hover,
+    .menu-btn:hover{
       transform: translateY(-1px);
       background: var(--brand-dark);
+    }
+
+    .main-btn:active,
+    .menu-btn:active{
+      transform: scale(0.985);
+      box-shadow: 0 5px 10px rgba(139,0,0,0.14);
     }
 
     .hours{
@@ -157,25 +197,6 @@
       flex-direction: column;
       gap: 14px;
       margin-top: 6px;
-    }
-
-    .menu-btn{
-      text-decoration: none;
-      text-align: center;
-      padding: 14px;
-      border-radius: var(--pill);
-      color: #fff;
-      font-weight: 700;
-      background: var(--brand);
-      box-shadow: var(--shadow-brand);
-      cursor: pointer;
-      transition: all 0.15s ease;
-      display: block;
-    }
-
-    .menu-btn:hover{
-      transform: translateY(-1px);
-      background: var(--brand-dark);
     }
 
     .hidden{
@@ -257,7 +278,7 @@
     .footer{
       text-align: center;
       margin-top: 18px;
-      padding-top: 6px;
+      padding: 4px 6px 2px;
       font-size: 13px;
       color: var(--footer-text);
       line-height: 1.6;
@@ -286,6 +307,7 @@
       flex-direction: column;
       gap: 8px;
       color: var(--muted);
+      font-size: 12.5px;
     }
 
     .service-block{
@@ -298,6 +320,14 @@
     }
 
     @media (max-width: 420px){
+      body{
+        padding: 8px;
+      }
+
+      .shell{
+        min-height: calc(100vh - 16px);
+      }
+
       .logo{
         width: 100px;
         height: 100px;
@@ -309,6 +339,10 @@
 <body>
 <div class="wrap">
   <div class="shell">
+
+    <div class="phone-topbar">
+      <div class="dynamic-island"></div>
+    </div>
 
     <div class="top">
       <div class="logo">
@@ -328,11 +362,12 @@
         Send us a message
       </a>
 
-      <div class="hours">Available daily: 8AM – 4PM</div>
+      <div class="hours">Daily Office Hours: 8AM – 4PM</div>
     </div>
 
     <div class="menu">
       <a class="menu-btn" href="sms:+14054511242?body=connect">I’m New</a>
+      <a class="menu-btn" href="https://wetumkafbc.churchcenter.com/home" target="_blank" rel="noopener noreferrer">Update My Info</a>
       <a class="menu-btn" href="https://wetumkafbc.churchcenter.com/giving" target="_blank" rel="noopener noreferrer">Give</a>
       <a class="menu-btn" href="#" id="events-toggle">Events</a>
       <a class="menu-btn" href="sms:+14054511242?body=Need%20Prayer">Need Prayer</a>
