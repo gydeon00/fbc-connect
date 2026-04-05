@@ -350,7 +350,7 @@
       </div>
 
       <h1>FBC Wetumka</h1>
-      <div class="sub">We’d love to connect with you. Tap below to get started.</div>
+      <div class="sub">We’d love to connect with you.</div>
 
       <div class="socials">
         <a class="icon" href="https://www.facebook.com/fbcwetumka/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">F</a>
@@ -367,7 +367,7 @@
 
     <div class="menu">
       <a class="menu-btn" href="sms:+14054511242?body=connect">I’m New</a>
-      <a class="menu-btn" href="https://wetumkafbc.churchcenter.com/home" target="_blank" rel="noopener noreferrer">Update My Info</a>
+      <a class="menu-btn" href="https://wetumkafbc.churchcenter.com/login" target="_blank" rel="noopener noreferrer">Update My Info</a>
       <a class="menu-btn" href="https://wetumkafbc.churchcenter.com/giving" target="_blank" rel="noopener noreferrer">Give</a>
       <a class="menu-btn" href="#" id="events-toggle">Events</a>
       <a class="menu-btn" href="sms:+14054511242?body=Need%20Prayer">Need Prayer</a>
@@ -419,18 +419,24 @@
 
 <script>
   const calendarId = "9uj8atk5orpfqpdpr2sb8p36ik@group.calendar.google.com";
-  const apiKey = "AIzaSyAWewcBgbsJ1nSjigsPGmklup17OLPAvWk";
+  const apiKey = window.GCAL_API_KEY || "";
 
   let eventsLoaded = false;
   const toggleBtn = document.getElementById("events-toggle");
 
   async function loadEvents() {
     const list = document.getElementById("events-list");
+
+    if (!apiKey) {
+      list.innerHTML = `<div class="event-error">Events are temporarily unavailable.</div>`;
+      return;
+    }
+
     const now = new Date().toISOString();
 
     const url =
       `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events` +
-      `?key=${apiKey}` +
+      `?key=${encodeURIComponent(apiKey)}` +
       `&singleEvents=true` +
       `&orderBy=startTime` +
       `&timeMin=${encodeURIComponent(now)}` +
